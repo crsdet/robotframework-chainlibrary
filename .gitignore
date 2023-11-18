@@ -1,5 +1,7 @@
+dist
 *.xml
 *.html
 __pycache__
 .venv
 !docs/*.html
+src/robotframework_chainlibrary*

@@ -1,4 +1,4 @@
-# robotframework-chainlibrary
+# RobotFramework-ChainLibrary
 
 [![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/checks.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions)
 

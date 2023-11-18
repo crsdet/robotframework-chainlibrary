@@ -1,0 +1,35 @@
+---
+name: robotframework-chainlibrary
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [3.8, 3.9, 3.10, 3.11]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ matrix.version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.version }}
+          cache: pip
+
+      - name: Build
+        run: pip install -r requirements.txt
+
+      - name: Test
+        run: |
+          mkdir -p results
+          robot -d results tests
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: results
+          path: results

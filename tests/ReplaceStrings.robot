@@ -3,6 +3,7 @@ Documentation    Replace Strings Tests
 Library          FakerLibrary
 Library          ../src/ChainLibrary/ChainLibrary.py
 
+
 *** Test Cases ***
 Test Original String Is Not Altered
     ${original}        Set Variable         My name is __NAME__ and I am __AGE__ years old.

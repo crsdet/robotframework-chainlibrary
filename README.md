@@ -1,5 +1,7 @@
 # robotframework-chainlibrary
 
+[![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/checks.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions)
+
 Robot Framework library for running keywords in chain.
 
 This module allows to run 2 or more keywords on a single line where the returned value of the first keyword is the argument of the second keyword and so on in Robot Framework.

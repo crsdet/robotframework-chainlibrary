@@ -58,3 +58,11 @@ Test ${SEPARATOR} Cannot Be Last Argument
     ...    AND
     ...    Convert To String
     ...    AND
+
+Test ${SEPARATOR}s Cannot Be Together
+    Run Keyword And Expect Error    ${SEPARATOR} must have a keyword before and after.
+        ...    Chain Keywords
+        ...    Random Int    18    100
+        ...    AND
+        ...    AND
+        ...    Convert To String

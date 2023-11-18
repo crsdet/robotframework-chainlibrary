@@ -78,10 +78,13 @@ class ChainLibrary:
     def _split_chained_keywords(self, keywords: list) -> list:
         replace_list = []
         tmp = []
-        for kw in keywords:
+        for i, kw in enumerate(keywords):
             if self._is_separator(kw):
-                replace_list.append(tmp)
-                tmp = []
+                if self._is_separator(keywords[i + 1]):
+                    raise DataError(f'{self._separator.upper()} must have a keyword before and after.')
+                else:
+                    replace_list.append(tmp)
+                    tmp = []
             else:
                 tmp.append(kw)
         replace_list.append(tmp)

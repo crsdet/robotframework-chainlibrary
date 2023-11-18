@@ -1,0 +1,5 @@
+*.xml
+*.html
+__pycache__
+.venv
+!docs/*.html

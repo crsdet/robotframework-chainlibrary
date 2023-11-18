@@ -2,8 +2,7 @@
 Documentation    Chain Keywords Tests
 Library          String
 Library          FakerLibrary
-Library          ../src/ChainLibrary/ChainLibrary.py    separator=${SEPARATOR}
-
+Library          ChainLibrary    separator=${SEPARATOR}
 
 *** Variables ***
 ${SEPARATOR}    AND

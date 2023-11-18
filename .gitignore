@@ -4,4 +4,4 @@ dist
 __pycache__
 .venv
 !docs/*.html
-src/robotframework_chainlibrary*
+src/robotframework_chainlibrary.egg-info

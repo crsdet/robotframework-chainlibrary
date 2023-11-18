@@ -28,7 +28,7 @@ jobs:
       - name: Test
         run: |
           mkdir -p results
-          robot -d results tests
+          robot -d results -P src tests
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Replace Strings Tests
 Library          FakerLibrary
-Library          ../src/ChainLibrary/ChainLibrary.py
+Library          ChainLibrary
 
 
 *** Test Cases ***

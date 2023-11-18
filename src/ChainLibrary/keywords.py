@@ -4,14 +4,7 @@ from robot.libraries.String import String
 from robot.utils import is_string
 
 
-class ChainLibrary:
-    """``ChainLibrary`` is a Robot Framework library for running keywords in chain.
-
-    Following keywords are included:
-
-    - `Replace Strings`
-    - `Chain Keywords`
-    """
+class ChainKeywords:
 
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
 

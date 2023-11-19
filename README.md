@@ -2,11 +2,11 @@
 
 [![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/checks.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions)
 
-Robot Framework library for running keywords in chain.
-
-This module allows to run 2 or more keywords on a single line where the returned value of the first keyword is the argument of the second keyword and so on in Robot Framework.
+**robotframework-chainlibrary** is a [Robot Framework](https://robotframework.org) library that allows to run different keywords in a chain, reducing the amount of keywords used to perform a simple task.
 
 ## Installation
+
+You can install robotframework-chainlibrary via [pip](https://pip.pypa.io/en/stable):
 
 ~~~sh
 pip install robotframework-chainlibrary
@@ -14,7 +14,7 @@ pip install robotframework-chainlibrary
 
 ## Usage
 
-[ChainLibrary keyword documentation](https://crsdet.github.io/robotframework-chainlibrary)
+Documentation can be found at <https://crsdet.github.io/robotframework-chainlibrary>.
 
 ~~~robotframework
 *** Settings ***
@@ -23,29 +23,47 @@ Library    ChainLibrary
 
 
 *** Variables ***
-${WELCOME_MESSAGE}    Hello __NAME__, welcome to the __LIBRARY__ Library!
+${EXAMPLE_REPLACE_STRING}    My name is __LAST_NAME__, __FIRST_NAME__ __LAST_NAME__.
 
 
 *** Test Cases ***
-Replace Multiple Strings
-    ${new_str}    Replace Strings    ${WELCOME_MESSAGE}    __NAME__=John Doe    __LIBRARY__=Chain
-    Should Be Equal    ${new_str}    Hello John Doe, welcome to the Chain Library!
+Test Replace String With Different Values
+    ${str}    Chain Arguments    Replace String
+    ...    ${EXAMPLE_REPLACE_STRING}    __LAST_NAME__     Doe
+    ...       AND
+    ...    %                            __FIRST_NAME__    John
+    Should Be Equal    ${str}    My name is Doe, John Doe.
 
-Run Chained Keywords
-    ${str}    Chain Keywords    Generate Random String    AND    Set Test Variable    ${RANDOM_STRING}
-    Should Be Equal    ${str}    ${RANDOM_STRING}
+Test Generate Random String And Log It
+    ${str}    Chain Keywords
+    ...    Generate Random String
+    ...       AND
+    ...    Catenate    SEPARATOR=${SPACE}    Random String is:    %.
+    ...       AND
+    ...    Log
+    Should Be Equal    ${str}    Random String is: random_generated_string.
+
+Test Generate Random Int And Set It On A Test Variable
+    ${num}    Chain Keywords
+    ...    Random Int    1    5
+    ...       AND
+    ...    Set Test Variable    $RANDOM_NUMBER
+    Variable Should Exist    ${RANDOM_NUMBER}
+    Should Be Equal    ${num}    ${RANDOM_NUMBER}
 ~~~
 
-You can also specify a different separator:
+You can also specify a different separator or replace string:
 
 ~~~robotframework
 *** Settings ***
-Library    String
-Library    ChainLibrary    separator=->
+Library    ChainLibrary    separator=${SEPARATOR}    replace=${REPLACE}
 
 
-*** Test Cases ***
-Run Chained Keywords
-    ${str}    Chain Keywords    Generate Random String    ->    Set Test Variable    ${RANDOM_STRING}
-    Should Be Equal    ${str}    ${RANDOM_STRING}
+*** Variables ***
+${SEPARATOR}    ->
+${REPLACE}      %
 ~~~
+
+## License
+
+RobotFramework-ChainLibrary is open source software provided under the [GPL-3.0 License](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE).

@@ -33,5 +33,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: results
-          path: results-python${{ matrix.version }}
+          name: results-python${{ matrix.version }}
+          path: results

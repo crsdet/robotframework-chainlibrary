@@ -2,7 +2,7 @@
 
 [![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/checks.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions)
 
-**robotframework-chainlibrary** is a [Robot Framework](https://robotframework.org) library that allows to run different keywords in a chain, reducing the amount of keywords used to perform a simple task.
+**robotframework-chainlibrary** is a [Robot Framework](https://robotframework.org) library for running keywords in a chain. The purpose is to streamline the execution of common operations by providing a condensed syntax that allows users to perform tasks with fewer lines of code.
 
 ## Installation
 
@@ -18,34 +18,37 @@ Documentation can be found at <https://crsdet.github.io/robotframework-chainlibr
 
 ~~~robotframework
 *** Settings ***
-Library    String
 Library    ChainLibrary
 
 
-*** Variables ***
-${EXAMPLE_REPLACE_STRING}    My name is __LAST_NAME__, __FIRST_NAME__ __LAST_NAME__.
-
-
 *** Test Cases ***
-Test Replace String With Different Values
-    ${str}    Chain Arguments    Replace String
-    ...    ${EXAMPLE_REPLACE_STRING}    __LAST_NAME__     Doe
-    ...       AND
-    ...    %                            __FIRST_NAME__    John
-    Should Be Equal    ${str}    My name is Doe, John Doe.
-
-Test Generate Random String And Log It
-    ${str}    Chain Keywords
-    ...    Generate Random String
-    ...       AND
-    ...    Catenate    SEPARATOR=${SPACE}    Random String is:    %.
-    ...       AND
-    ...    Log
-    Should Be Equal    ${str}    Random String is: random_generated_string.
-
 Test Generate Random Int And Set It On A Test Variable
     ${num}    Chain Keywords
-    ...    Random Int    1    5
+    ...    Random Int    18    100
+    ...       AND
+    ...    Set Test Variable    $RANDOM_NUMBER
+    Variable Should Exist    ${RANDOM_NUMBER}
+    Should Be Equal    ${num}    ${RANDOM_NUMBER}
+
+Test Replace Last Returned Value
+    ${num}    Chain Keywords
+    ...    Random Int    18    100
+    ...       AND
+    ...    Set Test Variable    $RANDOM_NUMBER
+    ...       AND
+    ...    Evaluate      $_ + 10
+    ...       AND
+    ...    Set Test Variable    $RANDOM_NUMBER_PLUS_10
+    Variable Should Exist    ${RANDOM_NUMBER}
+    Variable Should Exist    ${RANDOM_NUMBER_PLUS_10}
+    Should Be Equal    ${RANDOM_NUMBER + 10}    ${RANDOM_NUMBER_PLUS_10}
+    Should Be Equal    ${num}    ${RANDOM_NUMBER_PLUS_10}
+
+Test Last Returned Value Remains If Previous Keyword Does Not Return A Value
+    ${num}    Chain Keywords
+    ...    Random Int    18     100
+    ...       AND
+    ...    Log
     ...       AND
     ...    Set Test Variable    $RANDOM_NUMBER
     Variable Should Exist    ${RANDOM_NUMBER}
@@ -66,4 +69,4 @@ ${REPLACE}      %
 
 ## License
 
-RobotFramework-ChainLibrary is open source software provided under the [GPL-3.0 License](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE).
+RobotFramework-ChainLibrary is open source software provided under the [Apache-2.0 license](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE).

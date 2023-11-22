@@ -1,3 +1,5 @@
+from robot.libraries.BuiltIn import register_run_keyword
+
 from .keywords import ChainKeywords
 
 class ChainLibrary(ChainKeywords):
@@ -5,8 +7,9 @@ class ChainLibrary(ChainKeywords):
 
     The following keywords are included:
 
-    - `Chain Arguments`
     - `Chain Keywords`
     """
 
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+
+register_run_keyword('ChainLibrary', 'chain_keywords', deprecation_warning=False)

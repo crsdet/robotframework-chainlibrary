@@ -1,8 +1,8 @@
 # RobotFramework-ChainLibrary
 
-[![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/checks.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions)
+[![GitHub Actions status](https://github.com/crsdet/robotframework-chainlibrary/actions/workflows/tests.yml/badge.svg)](https://github.com/crsdet/robotframework-chainlibrary/actions) [![Version](https://img.shields.io/pypi/v/robotframework-chainlibrary.svg?label=version)](https://pypi.python.org/pypi/robotframework-chainlibrary) [![License](https://img.shields.io/pypi/l/robotframework-chainlibrary.svg)](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE)
 
-**robotframework-chainlibrary** is a [Robot Framework](https://robotframework.org) library for running keywords in a chain. The purpose is to streamline the execution of common operations by providing a condensed syntax that allows users to perform tasks with fewer lines of code.
+**RobotFramework-ChainLibrary** is a [Robot Framework](https://robotframework.org) library for running keywords in a chain. The purpose is to streamline the execution of common operations by providing a condensed syntax that allows users to perform tasks with fewer lines of code.
 
 ## Installation
 
@@ -69,4 +69,4 @@ ${REPLACE}      %
 
 ## License
 
-RobotFramework-ChainLibrary is open source software provided under the [Apache-2.0 license](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE).
+RobotFramework-ChainLibrary is open source software provided under the [Apache License 2.0](https://github.com/crsdet/robotframework-chainlibrary/blob/main/LICENSE).
